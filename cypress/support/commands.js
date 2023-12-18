@@ -23,3 +23,14 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("signup", (firstName, lastName, email, password) => {
+  cy.get("#firstname").type(firstName).should("have.value", firstName);
+  cy.get("#lastname").type(lastName).should("have.value", lastName);
+  cy.get("#email_address").type(email).should("have.value", email);
+  cy.get("#password").type(password).should("have.value", password);
+  cy.get("#password-confirmation")
+    .type(password)
+    .should("have.value", password);
+  cy.get(".action.submit.primary").click();
+});
